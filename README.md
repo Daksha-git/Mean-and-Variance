@@ -53,46 +53,30 @@ It shows the distance of a random variable from its mean. It is calcualted as
 **Register Number:** 212224230048
 
 ```
-import numpy as np
+n=int(input("Enter number of values: "))
 
-L = [int(i) for i in input("Enter arrival data: ").split()]
+x=[]
+p=[]
 
-N = len(L)
-M = max(L)
+print("Enter values of x: ")
+for i in range(n):
+  x.append(float(input()))
 
-x = []
-f = []
+print("Enter probabilities: ")
+for i in range(n):
+  p.append(float(input()))
 
-for i in range(M + 1):
-    c = 0
-    for j in range(N):
-        if L[j] == i:
-            c = c + 1
-    f.append(c)
-    x.append(i)
+mean=0
+for i in range(n):
+  mean+=x[i]*p[i]
 
-sf = np.sum(f)
+ex2=0
+for i in range(n):
+  ex2+=(x[i]**2)*p[i]
 
-p = []
-
-for i in range(M + 1):
-    p.append(f[i] / sf)
-
-print("x\tP(x)")
-for i in range(len(x)):
-    print(x[i], "\t", p[i])
-
-mean = np.inner(x, p)
-
-EX2 = np.inner(np.square(x), p)
-
-var = EX2 - mean**2
-
-SD = np.sqrt(var)
-
-print("The Mean arrival rate is %.3f" % mean)
-print("The Variance of arrival from feeder is %.3f" % var)
-print("The Standard deviation of arrival from feeder is %.3f" % SD)
+variance=ex2-mean**2
+print("Mean= ",mean)
+print("Variance= ",variance)
 ```
 
 # Output : 
